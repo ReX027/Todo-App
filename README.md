@@ -18,18 +18,6 @@ A fully Responsive Todo App built using React.js and Nodejs.
 - User authentication
 - Persistent data storage on mongodb
 
-## Project Structure
-
-#Backend
-- [index.js](./index.js): Main entry point for the Express server. Handles server   
-                      logic and routing.
-- [views](./views): Contains Pug files for rendering views.
-- [static](./static): Houses static assets such as CSS, images, and JavaScript 
-                      files.
-- [models](./models) It has the user schema model.
-- [db.js](./db.js) To connect to the database.
-
-
 ## Getting Started
 
 ### Prerequisites
