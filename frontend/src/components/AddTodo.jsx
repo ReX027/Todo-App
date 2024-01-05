@@ -4,7 +4,7 @@ import './AddTodo.css'
 const AddTodo = () => {
     const context = useContext(TodoContext);
     const { addTodo } = context;
-    const [todo, settodo] = useState({ content: "", color: "red", complete: "true" })
+    const [todo, settodo] = useState({ content: "", color: "", complete: "" })
     const handleAddTodo = (e) => {
         e.preventDefault();
         // console.log(todo);

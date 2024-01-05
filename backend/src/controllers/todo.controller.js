@@ -19,8 +19,11 @@ const addTodo = asynchandler(async (req, res) => {
     if (content === "") {
         throw new ApiError(400, "Enter a valid content")
     }
-    if (color == "" || complete == "") {
-        return;
+    if (color === "") {
+
+    }
+    if (complete === "") {
+
     }
     const createdTodo = await Todo.create({
         createdBy: req.user._id,
