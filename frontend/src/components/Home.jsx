@@ -36,7 +36,7 @@ function Home() {
                 <div className="home-container">
                     <img
                         className="background-image"
-                        src="../../public/homeimage.jpg"
+                        src="/homeimage.jpg"
                         alt="Background"
                         loading="lazy"
                     />
