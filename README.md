@@ -10,6 +10,7 @@ A fully Responsive Todo App built using React.js and Nodejs.
   - [Installation](#installation)
   - [Running the App](#running-the-app)
 - [Tech Stack](#tech-stack)
+- [Contributing](#contributing)
 
 ## Features
 
@@ -76,7 +77,10 @@ A fully Responsive Todo App built using React.js and Nodejs.
 
  - use npm run both on the frontend terminal
       - cd ./frontend
-      - npm run both 
-  
+      - npm run both
+        
+## Tech Stack
+ - MERN stack
+
 ## Contributing
 Feel free to contribute by opening issues or submitting pull requests.
