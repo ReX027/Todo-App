@@ -30,7 +30,13 @@ const Todoitem = (props) => {
                     {isEditing ? (
                         <>
                             <input
-                                style={{ color: 'black' }}
+                                style={{
+                                    color: 'black',
+                                    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+                                    borderRadius: '8px',
+                                    height: '45px',
+                                    width: '98%',
+                                }}
                                 type="text"
                                 value={updatedContent}
                                 onChange={(e) => setUpdatedContent(e.target.value)}

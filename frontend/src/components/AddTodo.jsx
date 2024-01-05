@@ -8,6 +8,7 @@ const AddTodo = () => {
     const handleAddTodo = (e) => {
         e.preventDefault();
         addTodo(todo.content, todo.color, todo.complete);
+        settodo({ content: "" });
     }
     const OnchangeInput = (e) => {
         settodo({ ...todo, [e.target.name]: e.target.value })
@@ -22,6 +23,7 @@ const AddTodo = () => {
                         className="form-control"
                         id="content"
                         name="content"
+                        value={todo.content}
                         onChange={OnchangeInput}
                     />
                 </div>
