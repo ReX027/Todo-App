@@ -16,7 +16,7 @@ const Todos = () => {
             <div className="todos">
                 <h3>My Todos</h3>
                 {Todos.map((Todo) => {
-                    console.log(Todo._id, "yooo");
+                    {/* console.log(Todo._id, "yooo"); */ }
                     return <Todoitem key={Todo._id} todo={Todo} />;
                 })}
             </div>
