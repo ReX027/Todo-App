@@ -1,0 +1,38 @@
+.todos {
+    /* margin: 30px auto;
+    padding: 20px; */
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.btn {
+    display: inline-block;
+    background-color: #015809c9;
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 15px;
+    border: none;
+    margin-top: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    opacity: 0.8;
+}
+
+.todoContent input {
+    color: black;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    height: 45px;
+    width: 98%;
+}
+
+/* .todos h3 {
+    color: #333;
+    margin-bottom: 15px;
+} */

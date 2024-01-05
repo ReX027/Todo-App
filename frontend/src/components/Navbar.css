@@ -1,0 +1,33 @@
+.Navbar {
+    background-color: rgba(19, 35, 47, 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 3rem;
+    padding: 0, 0, 3rem, 8rem;
+    box-shadow: 0 4px 10px 4px rgba(19, 35, 47, 0.3);
+    /* width: 100vh; */
+}
+
+.Navbar>div {
+    h2 {
+        text-transform: uppercase;
+        color: #1ab188;
+        font-weight: 400;
+    }
+}
+
+.Navbar>article {
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+.Navbar>article>a {
+    text-transform: uppercase;
+    padding: 20px;
+}
+
+.active {
+    color: #63fa0c;
+}

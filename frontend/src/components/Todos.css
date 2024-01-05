@@ -1,0 +1,9 @@
+.todos {
+    margin: 30px auto;
+    padding: 20px;
+}
+
+.todos h3 {
+    color: #333;
+    margin-bottom: 15px;
+}
