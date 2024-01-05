@@ -14,7 +14,7 @@ function Home() {
                 setIsAuthenticated(true);
             }
         } else {
-            console.log("Access Token not found");
+            // console.log("Access Token not found");
             if (isMounted) {
                 setIsAuthenticated(false);
             }
