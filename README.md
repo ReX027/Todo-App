@@ -3,13 +3,25 @@ A fully Responsive Todo App built using React.js and Nodejs.
 
 ## Table of Contents
 
+- [UI](#UI)
 - [Features](#features)
-- [Project Structure](#project-structure)
 - [Getting Started](#getting-started)
   - [Prerequisites](#prerequisites)
   - [Installation](#installation)
   - [Running the App](#running-the-app)
 - [Tech Stack](#tech-stack)
+- [Contributing](#contributing)
+
+## UI
+![Screenshot 2024-01-05 164406](https://github.com/ReX027/Todo-App/assets/90253821/67a2f3a3-1f1b-41f9-9b03-e074161f9663)
+![Screenshot 2024-01-05 164421](https://github.com/ReX027/Todo-App/assets/90253821/5004de28-9548-4631-972e-a8b62ecc4356)
+![Screenshot 2024-01-05 164623](https://github.com/ReX027/Todo-App/assets/90253821/5d6b580a-06be-4346-b14d-bf5456d0ccab)
+![Screenshot 2024-01-05 164645](https://github.com/ReX027/Todo-App/assets/90253821/6fd11e2a-7700-4584-a3df-d5d3b16d717c)
+![Screenshot 2024-01-05 164702](https://github.com/ReX027/Todo-App/assets/90253821/431f0e6c-149c-49b0-8d25-764f8f7c0c62)
+![Screenshot 2024-01-06 031137](https://github.com/ReX027/Todo-App/assets/90253821/84660654-657c-4cbf-a0d7-a1d104dbf64b)
+![Screenshot 2024-01-06 031224](https://github.com/ReX027/Todo-App/assets/90253821/5b9b4df0-fd72-48ff-8af0-c9e1b0e59044)
+![Screenshot 2024-01-05 164747](https://github.com/ReX027/Todo-App/assets/90253821/8fc0c51f-23b5-4a10-9b07-ec31dcaa7f56)
+
 
 ## Features
 
@@ -76,7 +88,10 @@ A fully Responsive Todo App built using React.js and Nodejs.
 
  - use npm run both on the frontend terminal
       - cd ./frontend
-      - npm run both 
-  
+      - npm run both
+        
+## Tech Stack
+ - MERN stack
+
 ## Contributing
 Feel free to contribute by opening issues or submitting pull requests.
