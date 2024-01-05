@@ -19,19 +19,8 @@ const TodoState = (props) => {
                 console.error("Couldnot fetch", error);
             });
     }
-    // const fetchTodo = async () => {
-    // API Call
-    // const response = await fetch(`${host}/api/v1/todos/fetchallTodos`, {
-    //     method: "GET",
-    //     headers: {
-    //         "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjUxYzVmZjFmYzM4ZGFiMGMyZTQ2Mjk2In0sImlhdCI6MTY5NjM1ODM4NX0.yN0PvvafcOhTbUKUHFruoOVxmBhv1WeJSvmwOkl9kKw"
-    //     }
-    // });
-    // const json = await response.json();
-    // // console.log(json);
-    // setTodos(json);
-    // }
-    // Add a Note
+
+    // Add a Todo
     const addTodo = async (id, content, complete) => {
         // To do : API Call
         // API Call

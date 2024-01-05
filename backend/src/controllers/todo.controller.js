@@ -39,18 +39,12 @@ const addTodo = asynchandler(async (req, res) => {
 const deleteTodo = asynchandler(async (req, res) => {
     const id = req.params.id;
     try {
-        // Find the todo to check if it exists and belongs to the authenticated user
         const todo = await Todo.findOne({ _id: id, createdBy: req.user.id });
 
         if (!todo) {
-            // If the todo doesn't exist or doesn't belong to the user, return an error
             throw new ApiError(400, "Unauthorized request or Todo not found");
         }
-
-        // If the todo exists and belongs to the user, delete it
         const deletedTodo = await Todo.findByIdAndDelete(id);
-
-        // Respond with a success message or the deleted todo
         return res.status(200).json(
             new ApiResponse(200, deletedTodo, "Todo deleted successfully")
         );
@@ -71,7 +65,6 @@ const updateTodo = asynchandler(async (req, res) => {
         const todo = await Todo.findOne({ _id: id, createdBy: req.user.id });
 
         if (!todo) {
-            // If the todo doesn't exist or doesn't belong to the user, return an error
             throw new ApiError(400, "Unauthorized request or Todo not found");
         }
         const updatedTodo = await Todo.findByIdAndUpdate(id, {
