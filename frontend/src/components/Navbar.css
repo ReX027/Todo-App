@@ -1,12 +1,19 @@
+header {
+    position: sticky;
+    top: 0px;
+}
+
 .Navbar {
-    background-color: rgba(19, 35, 47, 0.9);
+    background-color: rgba(19, 35, 47, 0.959);
     display: flex;
+    /* position: fixed; */
     align-items: center;
     justify-content: space-between;
     padding: 0 3rem;
     padding: 0, 0, 3rem, 8rem;
     box-shadow: 0 4px 10px 4px rgba(19, 35, 47, 0.3);
     /* width: 100vh; */
+
 }
 
 .Navbar>div {

@@ -7,12 +7,10 @@ const AddTodo = () => {
     const [todo, settodo] = useState({ content: "", color: "", complete: "" })
     const handleAddTodo = (e) => {
         e.preventDefault();
-        // console.log(todo);
         addTodo(todo.content, todo.color, todo.complete);
     }
     const OnchangeInput = (e) => {
         settodo({ ...todo, [e.target.name]: e.target.value })
-        // console.log(e.target.value);
     }
     return (
         <div className="todos">

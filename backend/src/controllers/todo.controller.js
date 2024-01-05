@@ -64,7 +64,7 @@ const deleteTodo = asynchandler(async (req, res) => {
 const updateTodo = asynchandler(async (req, res) => {
     const { content, complete, color } = req.body
     try {
-        if (content.trim() === "") {
+        if (content === "") {
             throw new ApiError(400, "Content cannot be empty")
         }
         const id = req.params.id;

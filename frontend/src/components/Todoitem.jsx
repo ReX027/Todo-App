@@ -1,42 +1,55 @@
-// import { useContext } from 'react'
-// import TodoContext from '../context/Todos/TodoContext';
+import { useContext, useState } from 'react'
+import TodoContext from '../context/Todos/TodoContext';
 import './Todoitem.css'
 
 const Todoitem = (props) => {
-    // const context = useContext(TodoContext);
-    // const { deleteTodo } = context;
+    const context = useContext(TodoContext);
+    const { deleteTodo, editTodo } = context;
     const Todo = props.todo;
+    const [isEditing, setIsEditing] = useState(false);
+    const [updatedContent, setUpdatedContent] = useState(Todo.content);
 
-    // if (!Todo[0]) {
-    //     console.error('Todo is undefined or null.');
-    //     return null; // or render a placeholder, return an empty component, or handle it in another way
-    // }
-    // useEffect(() => {
-    //     const tooltips = document.querySelectorAll('[data-toggle="tooltip"]');
-    //     tooltips.forEach((tooltip) => new window.bootstrap.Tooltip(tooltip));
-    // }, []);
-    // const handleDeleteClick = () => {
-    //     // Hide the tooltip when the "Delete" icon is clicked
-    //     // const deleteIcon = document.querySelector('.fa-circle-minus');
-    //     // const tooltip = event.currentTarget._tippy;
-    //     // if (tooltip) {
-    //     //   tooltip.hide();
-    //     // }
-    //     const tooltips = document.getElementsByClassName('custom-tooltip');
+    const handleEditClick = () => {
+        setIsEditing(true);
+    };
 
-    //     // Convert the HTMLCollection to an array and iterate through each element
-    //     Array.from(tooltips).forEach((tooltip) => {
-    //         tooltip.style.display = 'none';
-    //     });
-    //     deleteTodo(Todo._id);
+    const handleUpdateClick = () => {
+        editTodo(Todo._id, updatedContent)
+        setIsEditing(false);
+    };
+    const handleDeleteClick = () => {
+        deleteTodo(Todo._id);
+    };
+    // const handleUpdateClick = () => {
+    //     editTodo(Todo._id, "hi", "true", "black");
     // };
     return (
         <>
             <div className="todo-card">
                 <div className="card-body">
-                    <p className="card-title">{Todo.content}</p>
-                    <button type="submit" className="btn2" >Delete</button>
-                    <button type="submit" className="btn3" >Edit</button>
+                    {isEditing ? (
+                        <>
+                            <input
+                                style={{ color: 'black' }}
+                                type="text"
+                                value={updatedContent}
+                                onChange={(e) => setUpdatedContent(e.target.value)}
+                            />
+                            <button type="submit" onClick={handleUpdateClick} className="btn3">
+                                Update
+                            </button>
+                        </>
+                    ) : (
+                        <>
+                            <p className="card-title">{Todo.content}</p>
+                            <button type="submit" onClick={handleDeleteClick} className="btn2">
+                                Delete
+                            </button>
+                            <button type="submit" onClick={handleEditClick} className="btn3">
+                                Edit
+                            </button>
+                        </>
+                    )}
                 </div>
             </div>
         </>

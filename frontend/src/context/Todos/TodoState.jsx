@@ -22,7 +22,6 @@ const TodoState = (props) => {
 
     // Add a Todo
     const addTodo = async (content1, color1, complete1) => {
-        // API Call
         const content = content1;
         let color;
         if (color1) {
@@ -32,7 +31,6 @@ const TodoState = (props) => {
         if (complete1) {
             complete = complete1
         }
-        // const complete = complete1; 
         await axios
             .post(
                 `${host}/addtodo`,
@@ -46,51 +44,52 @@ const TodoState = (props) => {
                 }
             )
             .then((response) => {
-                // console.log(response.data.data, "Added Todo");
                 setTodos(Todos.concat(response.data.data));
             })
             .catch((error) => {
                 console.error("Couldnot add", error);
             });
     };
-    // const deleteTodo = async()
     // Delete a Note
     const deleteTodo = async (id) => {
-        // console.log("delete node with"+id);
-        const response = await fetch(`${host}/api/v1/todos/deletetodo/${id}`, {
-            method: "DELETE",
-            headers: {
-                "Content-Type": "application/json",
-                "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjUxYzVmZjFmYzM4ZGFiMGMyZTQ2Mjk2In0sImlhdCI6MTY5NjM1ODM4NX0.yN0PvvafcOhTbUKUHFruoOVxmBhv1WeJSvmwOkl9kKw"
+        try {
+            const response = await axios.delete(`${host}/deletetodo/${id}`, {
+                withCredentials: true,
+            });
+
+            if (response.data.success) {
+                // Successfully deleted, you can fetch the updated todos
+                fetchTodo();
+                console.log(`Todo with ID ${id} deleted successfully`);
+            } else {
+                console.error(`Failed to delete todo with ID ${id}`);
             }
-        })
-        const json = response.json();
-        console.log(json);
-        const newTodo = Todos.filter((Todo) => { return Todo._id !== id });
-        // setNotes(newNote);
-        setTodos(newTodo);
-    }
-    // Edit a Note
-    const editTodo = async (id, content, complete) => {
-        // API Call
-        const response = await fetch(`${host}/api/v1/todos/updatetodo/${id}`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjUxYzVmZjFmYzM4ZGFiMGMyZTQ2Mjk2In0sImlhdCI6MTY5NjM1ODM4NX0.yN0PvvafcOhTbUKUHFruoOVxmBhv1WeJSvmwOkl9kKw"
-            },
-            body: JSON.stringify({ content, complete }),
-        })
-        // const json = response.json();
-        // Logic to edit in client
-        for (let index = 0; index < Todos.length; index++) {
-            const element = Todos[index];
-            if (element._id === id) {
-                element.content = content;
-                element.complete = complete;
-            }
+        } catch (error) {
+            console.error("Error during deleteTodo:", error);
         }
-    }
+    };
+    // Edit a Note
+    const editTodo = async (id, content, complete, color) => {
+        try {
+            // API Call
+            const response = await axios.patch(
+                `${host}/updatetodo/${id}`,
+                { content, complete, color },
+                {
+                    withCredentials: true
+                }
+            );
+            if (response.data.success) {
+                fetchTodo();
+                // console.log(`Todo with ID ${id} updated successfully`);
+            } else {
+                console.error(`Failed to update todo with ID ${id}`);
+            }
+        } catch (error) {
+            console.error("Error during editTodo:", error);
+        }
+    };
+
     return (
         <TodoContext.Provider value={{ Todos, fetchTodo, addTodo, deleteTodo, editTodo }}>
             {props.children}

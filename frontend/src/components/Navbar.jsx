@@ -39,32 +39,34 @@ const Navbar = () => {
     };
     return (
         <>
-            <nav className="Navbar">
-                <div>
-                    <h2>Todo App</h2>
-                </div>
-                <article>
-                    <Link className={`nav-link ${location.pathname === "/" ? "active" : ""}`} to={"/"}>
-                        Home
-                    </Link>
-                    <Link className={`nav-link ${location.pathname === "/about" ? "active" : ""}`} to={"/about"}>
-                        About
-                    </Link>
-                    {isAuthenticated ? (
-                        <Link
-                            className={`nav-link ${location.pathname === "/logout" ? "active" : ""}`} to={"/"}
-                            // disabled={loading}
-                            onClick={logoutHandler}
-                        >
-                            Logout
+            <header>
+                <nav className="Navbar">
+                    <div>
+                        <h2>Todo App</h2>
+                    </div>
+                    <article>
+                        <Link className={`nav-link ${location.pathname === "/" ? "active" : ""}`} to={"/"}>
+                            Home
                         </Link>
-                    ) : (
-                        <Link className={`nav-link ${location.pathname === "/signUp" ? "active" : ""}`} to={"/signUp"}>
-                            Signup
+                        <Link className={`nav-link ${location.pathname === "/about" ? "active" : ""}`} to={"/about"}>
+                            About
                         </Link>
-                    )}
-                </article>
-            </nav>
+                        {isAuthenticated ? (
+                            <Link
+                                className={`nav-link ${location.pathname === "/logout" ? "active" : ""}`} to={"/"}
+                                // disabled={loading}
+                                onClick={logoutHandler}
+                            >
+                                Logout
+                            </Link>
+                        ) : (
+                            <Link className={`nav-link ${location.pathname === "/signUp" ? "active" : ""}`} to={"/signUp"}>
+                                Signup
+                            </Link>
+                        )}
+                    </article>
+                </nav>
+            </header>
         </>
     );
 };
