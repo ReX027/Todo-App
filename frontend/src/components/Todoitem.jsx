@@ -35,6 +35,8 @@ const Todoitem = (props) => {
             <div className="todo-card">
                 <div className="card-body">
                     <p className="card-title">{Todo.content}</p>
+                    <button type="submit" className="btn2" >Delete</button>
+                    <button type="submit" className="btn3" >Edit</button>
                 </div>
             </div>
         </>

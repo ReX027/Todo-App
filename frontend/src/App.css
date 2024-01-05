@@ -6,5 +6,5 @@
 body {
   background: #c1bdba;
   font-family: "Titillium Web", sans-serif;
-  overflow: hidden;
+  overflow-x: hidden;
 }

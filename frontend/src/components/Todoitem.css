@@ -9,6 +9,33 @@
     padding: 16px;
 }
 
+.btn2 {
+    display: inline-block;
+    background-color: #880404c9;
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 15px;
+    border: none;
+    margin-top: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn3 {
+    display: inline-block;
+    background-color: #04880fc9;
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 15px;
+    border: none;
+    margin-top: 10px;
+    margin-left: 3px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
 .card-title {
     font-size: 18px;
     margin-bottom: 8px;
