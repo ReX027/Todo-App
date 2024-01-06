@@ -117,15 +117,14 @@ const SignUp = () => {
         }
         try {
             await axios.post("http://localhost:4000/api/v1/users/login", data, { withCredentials: true });
-            // console.log(res);
-            // toast.success("User LoggedIn Successfully");
+            toast.success("User LoggedIn Successfully");
             setcredentials({
                 email: "",
                 password: ""
             });
             navigate("/");
         } catch (error) {
-            // console.error("Error during login:", error);
+            console.error("Error during login:", error);
         }
     }
 
