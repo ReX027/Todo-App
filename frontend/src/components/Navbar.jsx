@@ -14,9 +14,6 @@ const Navbar = () => {
         let accessTokenCookie = document.cookie.split('; ').find(cookie => cookie.startsWith('accessToken='));
         if (accessTokenCookie) {
             setIsAuthenticated(true);
-            // console.log("Logout should be seen")
-        } else {
-            console.log("Access Token not found");
         }
     }, [location]);
 

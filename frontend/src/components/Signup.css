@@ -89,13 +89,20 @@ label .req {
 }
 
 label.active {
-    transform: translateY(50px);
+    transform: translateY(-10px);
+    /* background-color: red; */
+    backdrop-filter: blur(1px);
     left: 2px;
     font-size: 14px;
 }
 
+.error-message {
+    color: red;
+    font-size: 14px;
+}
+
 label.highlight {
-    color: #ffffff;
+    color: #1ab188;
 }
 
 input,

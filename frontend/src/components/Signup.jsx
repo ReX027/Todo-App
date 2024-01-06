@@ -8,7 +8,7 @@ const SignUp = () => {
     const [activeTab, setActiveTab] = useState("signup");
     const [credentials, setcredentials] = useState({ email: "", password: "", username: "", reenterPassword: "" })
     const navigate = useNavigate();
-
+    const [errors, setErrors] = useState({});
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         setcredentials((prevCredentials) => ({
@@ -59,25 +59,46 @@ const SignUp = () => {
     };
 
     const handleRegister = async (e) => {
-        console.log("hi");
         e.preventDefault();
-        let data = {
-            email: credentials.email,
-            password: credentials.password,
-            username: credentials.username,
+        let errors = {};
+        if (!credentials.username.trim()) {
+            errors.username = "Username is required"
         }
-        try {
-            const res = await axios.post("http://localhost:4000/api/v1/users/register", data);
-            console.log(res);
-            toast.success("User Registered Successfully");
-            setcredentials({
-                email: "",
-                password: "",
-                username: "",
-                reenterPassword: ""
-            });
-        } catch (error) {
-            console.error("Error during Registering", error);
+        if (!credentials.email) {
+            errors.email = "Email required"
+        } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(credentials.email)) {
+            errors.email = "Email address is invalid"
+        }
+        if (!credentials.password) {
+            errors.password = "Password is required"
+        } else if (credentials.password < 6) {
+            errors.password = "password needs to be more than 6 characters"
+        }
+        if (!credentials.reenterPassword) {
+            errors.reenterPassword = "Password is required"
+        } else if (credentials.reenterPassword !== credentials.password) {
+            errors.reenterPassword = "Passwords do not match"
+        }
+        setErrors(errors)
+        if (Object.keys(errors).length === 0) {
+            let data = {
+                email: credentials.email,
+                password: credentials.password,
+                username: credentials.username,
+            }
+            try {
+                await axios.post("http://localhost:4000/api/v1/users/register", data);
+                toast.success("User Registered Successfully");
+                setcredentials({
+                    email: "",
+                    password: "",
+                    username: "",
+                    reenterPassword: ""
+                });
+                setErrors({});
+            } catch (error) {
+                console.error("Error during Registering", error);
+            }
         }
     }
     const handleLogin = async (e) => {
@@ -95,16 +116,16 @@ const SignUp = () => {
             };
         }
         try {
-            const res = await axios.post("http://localhost:4000/api/v1/users/login", data, { withCredentials: true });
-            console.log(res);
-            toast.success("User LoggedIn Successfully");
+            await axios.post("http://localhost:4000/api/v1/users/login", data, { withCredentials: true });
+            // console.log(res);
+            // toast.success("User LoggedIn Successfully");
             setcredentials({
                 email: "",
                 password: ""
             });
             navigate("/");
         } catch (error) {
-            console.error("Error during login:", error);
+            // console.error("Error during login:", error);
         }
     }
 
@@ -134,9 +155,10 @@ const SignUp = () => {
                                     name="email"
                                     value={credentials.email}
                                     onChange={handleInputChange}
-                                    required
+
                                     autoComplete="off"
                                 />
+                                {errors.email && <label className="error-message">{errors.email}</label>}
                             </div>
 
                             <div className="field-wrap">
@@ -148,9 +170,10 @@ const SignUp = () => {
                                     name="username"
                                     value={credentials.username}
                                     onChange={handleInputChange}
-                                    required
+
                                     autoComplete="off"
                                 />
+                                {errors.username && <label className="error-message">{errors.username}</label>}
                             </div>
 
                             <div className="field-wrap">
@@ -162,9 +185,10 @@ const SignUp = () => {
                                     name="password"
                                     value={credentials.password}
                                     onChange={handleInputChange}
-                                    required
+
                                     autoComplete="off"
                                 />
+                                {errors.password && <label className="error-message">{errors.password}</label>}
                             </div>
 
                             <div className="field-wrap">
@@ -176,9 +200,10 @@ const SignUp = () => {
                                     name="reenterPassword"
                                     value={credentials.reenterPassword}
                                     onChange={handleInputChange}
-                                    required
+
                                     autoComplete="off"
                                 />
+                                {errors.reenterPassword && <label className="error-message">{errors.reenterPassword}</label>}
                             </div>
 
                             <button type="submit" className="button button-block">

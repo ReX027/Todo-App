@@ -13,7 +13,7 @@ const TodoState = (props) => {
                 withCredentials: true
             })
             .then((response) => {
-                setTodos(response.data.data);
+                setTodos(response.data.data.reverse());
             })
             .catch((error) => {
                 console.error("Couldnot fetch", error);
@@ -44,7 +44,7 @@ const TodoState = (props) => {
                 }
             )
             .then((response) => {
-                setTodos(Todos.concat(response.data.data));
+                setTodos([response.data.data, ...Todos]);
             })
             .catch((error) => {
                 console.error("Couldnot add", error);
