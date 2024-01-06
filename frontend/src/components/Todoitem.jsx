@@ -31,7 +31,7 @@ const Todoitem = (props) => {
                         <>
                             <input
                                 style={{
-                                    color: 'black',
+                                    color: Todo.color === "rgb(37, 37, 37)" ? "white" : "black",
                                     boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
                                     borderRadius: '8px',
                                     height: '45px',
@@ -47,7 +47,7 @@ const Todoitem = (props) => {
                         </>
                     ) : (
                         <>
-                            <p className="card-title">{Todo.content}</p>
+                            <p className="card-title" style={{ color: Todo.color === "rgb(37, 37, 37)" ? "white" : "black" }}>{Todo.content}</p>
                             <button type="submit" onClick={handleDeleteClick} className="btn2">
                                 Delete
                             </button>

@@ -17,8 +17,8 @@ const AddTodo = () => {
         settodo({ ...todo, color: e.target.value });
     }
     return (
-        <div className="todos" style={{ backgroundColor: todo.color }}>
-            <h3 style={{ color: todo.color === "rgb(37, 37, 37)" ? "white" : "black" }}>Add a Task</h3>
+        <div className="todos" >
+            <h3>Add a Task</h3>
             <form>
                 <div className="todoContent">
                     <input
@@ -28,11 +28,10 @@ const AddTodo = () => {
                         name="content"
                         value={todo.content}
                         onChange={OnchangeInput}
-                        style={{ color: todo.color === "rgb(37, 37, 37)" ? "white" : "black" }}
+                        style={{ color: todo.color === "rgb(37, 37, 37)" ? "white" : "black", backgroundColor: todo.color }}
                     />
                 </div>
                 <div className="colorDropdown">
-                    {/* <label htmlFor="color">Select Color:</label> */}
                     <select
                         id="color"
                         name="color"
