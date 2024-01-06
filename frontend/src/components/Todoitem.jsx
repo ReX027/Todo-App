@@ -25,7 +25,7 @@ const Todoitem = (props) => {
     // };
     return (
         <>
-            <div className="todo-card">
+            <div className="todo-card" style={{ backgroundColor: Todo.color }}>
                 <div className="card-body">
                     {isEditing ? (
                         <>

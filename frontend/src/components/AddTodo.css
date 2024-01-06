@@ -5,6 +5,9 @@
     border-radius: 8px;
     margin: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* background-color: #62cb82ce; */
+    /* background-color: rgba(219, 139, 65, 0.836); */
+    /* background-color: rgb(37, 37, 37); */
 }
 
 .btn {
@@ -36,3 +39,16 @@
     color: #333;
     margin-bottom: 15px;
 } */
+.colorDropdown {
+    position: relative;
+    width: fit-content;
+    left: 92%;
+    top: 18px;
+}
+
+#color {
+    background-color: black;
+    border-radius: 12px;
+    color: white;
+    outline: none;
+}

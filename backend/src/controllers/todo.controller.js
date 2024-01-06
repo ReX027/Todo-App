@@ -4,7 +4,7 @@ import { Todo } from "../models/todo.model.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
 
 const fetchTodo = asynchandler(async (req, res) => {
-    const todos = await Todo.find({ createdBy: req.user.id });
+    const todos = await Todo.find({ createdBy: req.user.id }).select('_id createdBy content complete color');
     if (!todos) {
         throw new ApiError(400, "You don't have todos, please create one")
     }

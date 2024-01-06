@@ -17,7 +17,7 @@ const todoSchema = new mongoose.Schema(
         },
         color: {
             type: String,
-            default: '#FFFFFF'
+            default: '#c1bdba'
         },
     },
     { timestamps: true }
