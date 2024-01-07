@@ -5,17 +5,18 @@ import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 
 const SignUp = () => {
+    const navigate = useNavigate();
     const [activeTab, setActiveTab] = useState("signup");
     const [credentials, setcredentials] = useState({ email: "", password: "", username: "", reenterPassword: "" })
-    const navigate = useNavigate();
     const [errors, setErrors] = useState({});
+    const [existedUsererror, setErrorMessageUser] = useState('');
+    const [existedEmailerror, setErrorMessageEmail] = useState('');
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         setcredentials((prevCredentials) => ({
             ...prevCredentials,
             [name]: value
         }));
-        console.log("I am changed")
     };
 
     const handleTabClick = (tab) => {
@@ -65,14 +66,15 @@ const SignUp = () => {
             errors.username = "Username is required"
         }
         if (!credentials.email) {
-            errors.email = "Email required"
+            errors.email = "Email is required"
         } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(credentials.email)) {
             errors.email = "Email address is invalid"
         }
         if (!credentials.password) {
             errors.password = "Password is required"
-        } else if (credentials.password < 6) {
-            errors.password = "password needs to be more than 6 characters"
+        } else if (credentials.password.length < 6) {
+
+            errors.password = "Password needs to be more than 5 characters"
         }
         if (!credentials.reenterPassword) {
             errors.reenterPassword = "Password is required"
@@ -80,7 +82,9 @@ const SignUp = () => {
             errors.reenterPassword = "Passwords do not match"
         }
         setErrors(errors)
+
         if (Object.keys(errors).length === 0) {
+            const parser = new DOMParser();
             let data = {
                 email: credentials.email,
                 password: credentials.password,
@@ -89,6 +93,8 @@ const SignUp = () => {
             try {
                 await axios.post("http://localhost:4000/api/v1/users/register", data);
                 toast.success("User Registered Successfully");
+                setErrorMessageUser('');
+                setErrorMessageEmail('');
                 setcredentials({
                     email: "",
                     password: "",
@@ -97,8 +103,18 @@ const SignUp = () => {
                 });
                 setErrors({});
             } catch (error) {
-                console.error("Error during Registering", error);
+                const doc = parser.parseFromString(error.response.data, 'text/html');
+                const extractedErrorMessage = doc.querySelector('pre').textContent.trim();
+                const usernameerror = extractedErrorMessage.slice(7, 30)
+                if (usernameerror === "Username already exists") {
+                    setErrorMessageUser(usernameerror)
+                    setErrorMessageEmail('');
+                } else {
+                    setErrorMessageEmail("Email already exists")
+                    setErrorMessageUser('');
+                }
             }
+
         }
     }
     const handleLogin = async (e) => {
@@ -158,6 +174,7 @@ const SignUp = () => {
                                     autoComplete="off"
                                 />
                                 {errors.email && <label className="error-message">{errors.email}</label>}
+                                {existedEmailerror && <label className="error-message">{existedEmailerror}</label>}
                             </div>
 
                             <div className="field-wrap">
@@ -173,6 +190,7 @@ const SignUp = () => {
                                     autoComplete="off"
                                 />
                                 {errors.username && <label className="error-message">{errors.username}</label>}
+                                {existedUsererror && <label className="error-message">{existedUsererror}</label>}
                             </div>
 
                             <div className="field-wrap">

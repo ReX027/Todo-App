@@ -11,6 +11,7 @@ class ApiError extends Error {
         this.message = message
         this.success = false
         this.errors = errors
+
         // production code
         // Useful for debugging and provides information about where the error occurred in the code.
         if (stack) {
