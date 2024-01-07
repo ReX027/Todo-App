@@ -11,6 +11,7 @@ const SignUp = () => {
     const [errors, setErrors] = useState({});
     const [existedUsererror, setErrorMessageUser] = useState('');
     const [existedEmailerror, setErrorMessageEmail] = useState('');
+    const [Loginerror, setLoginerror] = useState('');
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         setcredentials((prevCredentials) => ({
@@ -73,7 +74,6 @@ const SignUp = () => {
         if (!credentials.password) {
             errors.password = "Password is required"
         } else if (credentials.password.length < 6) {
-
             errors.password = "Password needs to be more than 5 characters"
         }
         if (!credentials.reenterPassword) {
@@ -119,28 +119,50 @@ const SignUp = () => {
     }
     const handleLogin = async (e) => {
         e.preventDefault();
-        let data;
-        if (credentials.email.includes("@")) {
-            data = {
-                email: credentials.email,
-                password: credentials.password,
-            };
-        } else {
-            data = {
-                username: credentials.email,
-                password: credentials.password,
-            };
+        let errors = {};
+        if (!credentials.email) {
+            errors.email = "Email or Username  is required"
+        } else if (credentials.email.includes('@') && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(credentials.email)) {
+            errors.email = "Invalid email address"
         }
-        try {
-            await axios.post("http://localhost:4000/api/v1/users/login", data, { withCredentials: true });
-            toast.success("User LoggedIn Successfully");
-            setcredentials({
-                email: "",
-                password: ""
-            });
-            navigate("/");
-        } catch (error) {
-            console.error("Error during login:", error);
+        if (!credentials.password) {
+            errors.password = "Password is required"
+        }
+        setErrors(errors)
+        if (Object.keys(errors).length === 0) {
+            const parser = new DOMParser();
+            let data;
+            if (credentials.email.includes('@')) {
+                data = {
+                    email: credentials.email,
+                    password: credentials.password,
+                };
+            } else {
+                data = {
+                    username: credentials.email,
+                    password: credentials.password,
+                };
+            }
+            try {
+                await axios.post("http://localhost:4000/api/v1/users/login", data, { withCredentials: true });
+                toast.success("User LoggedIn Successfully");
+                setcredentials({
+                    email: "",
+                    password: "",
+                });
+                setErrors({});
+                setLoginerror('');
+                navigate("/");
+            } catch (error) {
+                const doc = parser.parseFromString(error.response.data, 'text/html');
+                const extractedErrorMessage = doc.querySelector('pre').textContent.trim();
+                const Loginerror = extractedErrorMessage.slice(7, 26)
+                toast.error(Loginerror);
+                setcredentials({
+                    email: "",
+                    password: "",
+                });
+            }
         }
     }
 
@@ -247,6 +269,7 @@ const SignUp = () => {
                                     required
                                     autoComplete="off"
                                 />
+                                {errors.email && <label className="error-message">{errors.email}</label>}
                             </div>
 
                             <div className="field-wrap">
@@ -261,6 +284,7 @@ const SignUp = () => {
                                     required
                                     autoComplete="off"
                                 />
+                                {errors.password && <label className="error-message">{errors.password}</label>}
                             </div>
 
                             <p className="forgot">
@@ -270,6 +294,7 @@ const SignUp = () => {
                             <button type="submit" onClick={handleLogin} className="button button-block">
                                 Log In
                             </button>
+                            {/* {Loginerror && <p className="error-message">{Loginerror}</p>} */}
                         </form>
                     </div>
                 </div>

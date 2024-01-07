@@ -12,6 +12,12 @@ function Toast() {
                             primary: '#4aed88',
                         },
                     },
+                    error: {
+                        theme: {
+                            primary: '#ff0000'
+
+                        }
+                    }
                 }}
             ></Toaster>
         </div>

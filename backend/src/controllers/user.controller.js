@@ -98,13 +98,13 @@ const loginUser = asynchandler(async (req, res) => {
     })
 
     if (!user) {
-        throw new ApiError(404, "User doesnot exist");
+        throw new ApiError(404, "user doesnot exist");
     }
 
     //4.
     const isPasswordValid = await user.isPasswordCorrect(password);
     if (!isPasswordValid) {
-        throw new ApiError(404, "Invalid credentials");
+        throw new ApiError(404, "user doesnot exist");
     }
 
     //5.
