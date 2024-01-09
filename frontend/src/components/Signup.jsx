@@ -11,7 +11,6 @@ const SignUp = () => {
     const [errors, setErrors] = useState({});
     const [existedUsererror, setErrorMessageUser] = useState('');
     const [existedEmailerror, setErrorMessageEmail] = useState('');
-    const [Loginerror, setLoginerror] = useState('');
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         setcredentials((prevCredentials) => ({
@@ -151,7 +150,6 @@ const SignUp = () => {
                     password: "",
                 });
                 setErrors({});
-                setLoginerror('');
                 navigate("/");
             } catch (error) {
                 const doc = parser.parseFromString(error.response.data, 'text/html');

@@ -1,6 +1,7 @@
 import { useContext, useState } from 'react'
 import TodoContext from '../context/Todos/TodoContext';
 import './Todoitem.css'
+import CircleUpdate from './CircleUpdate';
 
 const Todoitem = (props) => {
     const context = useContext(TodoContext);
@@ -20,12 +21,9 @@ const Todoitem = (props) => {
     const handleDeleteClick = () => {
         deleteTodo(Todo._id);
     };
-    // const handleUpdateClick = () => {
-    //     editTodo(Todo._id, "hi", "true", "black");
-    // };
     return (
         <>
-            <div className="todo-card" style={{ backgroundColor: Todo.color }}>
+            <div className={`todo-card ${Todo.complete ? 'completed' : ''}`} style={{ backgroundColor: Todo.color }}>
                 <div className="card-body">
                     {isEditing ? (
                         <>
@@ -47,13 +45,29 @@ const Todoitem = (props) => {
                         </>
                     ) : (
                         <>
-                            <p className="card-title" style={{ color: Todo.color === "rgb(37, 37, 37)" ? "white" : "black" }}>{Todo.content}</p>
+                            <p className={`card-title ${Todo.complete ? 'completed' : ''}`} style={{ color: Todo.color === "rgb(37, 37, 37)" ? "white" : "black", backgroundColor: Todo.complete === "true" ? "red" : "", position: 'relative' }}>{Todo.content}
+                                {Todo.complete && (
+                                    <span
+                                        style={{
+                                            position: 'absolute',
+                                            top: '50%',
+                                            left: 0,
+                                            right: 0,
+                                            height: '2px',
+                                            background: 'red',
+                                            transform: 'translateY(-50%)',
+                                            width: `${Todo.content.length}ch`
+                                        }}
+                                    ></span>
+                                )}
+                            </p>
                             <button type="submit" onClick={handleDeleteClick} className="btn2">
                                 Delete
                             </button>
-                            <button type="submit" onClick={handleEditClick} className="btn3">
+                            {!Todo.complete && (<button type="submit" onClick={handleEditClick} className="btn3">
                                 Edit
-                            </button>
+                            </button>)}
+                            <CircleUpdate todo={Todo} />
                         </>
                     )}
                 </div>

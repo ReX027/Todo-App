@@ -60,7 +60,6 @@ const TodoState = (props) => {
             if (response.data.success) {
                 // Successfully deleted, you can fetch the updated todos
                 fetchTodo();
-                console.log(`Todo with ID ${id} deleted successfully`);
             } else {
                 console.error(`Failed to delete todo with ID ${id}`);
             }
@@ -69,7 +68,19 @@ const TodoState = (props) => {
         }
     };
     // Edit a Note
-    const editTodo = async (id, content, complete, color) => {
+    const editTodo = async (id, content1, complete1, color1) => {
+        let content;
+        if (content1) {
+            content = content1;
+        }
+        let color;
+        if (color1) {
+            color = color1
+        }
+        let complete;
+        if (complete1) {
+            complete = complete1
+        }
         try {
             // API Call
             const response = await axios.patch(
