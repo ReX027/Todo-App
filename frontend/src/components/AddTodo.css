@@ -1,6 +1,7 @@
 .todos {
     /* margin: 30px auto;
     padding: 20px; */
+    position: relative;
     border: 1px solid #ccc;
     border-radius: 8px;
     margin: 10px;
@@ -40,10 +41,10 @@
     margin-bottom: 15px;
 } */
 .colorDropdown {
-    position: relative;
+    position: absolute;
     width: fit-content;
-    left: 92%;
-    top: 18px;
+    right: 35px;
+    bottom: 25px;
 }
 
 #color {
